@@ -5,6 +5,11 @@ from django.utils.timezone import now
 # Create your models here.
 
 
+# class ArticleManager(models.Manager):
+#     def get_queryset(self):
+#         return super(ArticleManager, self).get_queryset().filter(status=True)
+
+
 class Category(models.Model):
 
     title = models.CharField(max_length=10)
@@ -19,10 +24,14 @@ class Article(models.Model):
     category = models.ManyToManyField(Category)
     title = models.CharField(max_length=30)
     body = models.TextField()
+    status = models.BooleanField(default=True)
     image = models.ImageField(upload_to='images/articles')
     created = models.DateTimeField(auto_now_add=True)
     upload = models.DateTimeField(auto_now=True)
     pub_date = models.DateField(default=now)
+    objects = models.Manager()
+    # article_manager = ArticleManager()
+
 #     it can be changes to Newest update Time
 
     def __str__(self):
