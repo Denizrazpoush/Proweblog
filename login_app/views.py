@@ -7,6 +7,8 @@ from django.contrib.auth import authenticate, login, logout
 
 
 def user_login(request):
+
+
     if request.user.is_authenticated == True:
         return redirect('/')
 
