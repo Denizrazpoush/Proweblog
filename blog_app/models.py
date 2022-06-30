@@ -1,5 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.urls import reverse
+from django.utils.text import slugify
 from django.utils.timezone import now
 
 # Create your models here.
@@ -31,8 +33,18 @@ class Article(models.Model):
     pub_date = models.DateField(default=now)
     objects = models.Manager()
     article_manager = ArticleManager()
+    slug = models.SlugField(max_length=100, unique=True, null=True)
 
-#     it can be changes to Newest update Time
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+
+        self.slug = slugify(self.title)
+        super(Article, self).save()
+
+    def get_absolute_url(self):
+        return reverse('blog_app:detail', kwargs={'slug': self.slug})
+
+    class Meta:
+        ordering = ('-created', )
 
     def __str__(self):
         return self.title

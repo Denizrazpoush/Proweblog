@@ -7,6 +7,6 @@ from blog_app.models import Article, ArticleManager
 def home(request):
 
     articles = Article.objects.all()
-    print(Article.article_manager.all())
+    recent = Article.objects.all()
 
-    return render(request, 'home_app/index.html', {'articles': articles})
+    return render(request, 'home_app/index.html', {'articles': articles, 'recent': recent})
