@@ -23,7 +23,7 @@ class Category(models.Model):
 
 class Article(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, unique_for_date="pub_date")
-    category = models.ManyToManyField(Category)
+    category = models.ManyToManyField(Category, related_name="articles")
     title = models.CharField(max_length=30)
     body = models.TextField()
     status = models.BooleanField(default=True)

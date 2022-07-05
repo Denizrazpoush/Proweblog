@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from blog_app.models import Article, ArticleManager
+from blog_app.models import Article, ArticleManager, Category
 
 # Create your views here.
 
