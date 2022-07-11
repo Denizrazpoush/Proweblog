@@ -514,9 +514,10 @@ header .navbar {
 }
 
 .blog-posts .main-button a {
+	margin-top: 40px;
 	height: 60px;
-	line-height: 60px;
-	padding: 0px;
+	line-height: 70px;
+	padding: 0;
 	width: 100%;
 	text-align: center;
 }
