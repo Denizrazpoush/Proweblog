@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Article, Category
+from .models import Article, Category, Comment
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
@@ -8,6 +8,11 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def detail_view(request, slug):
 
     article = get_object_or_404(Article, slug=slug)
+    if request.method == "POST":
+        body = request.POST.get('body')
+        parent_id = request.POST.get('parent_id')
+        parent = Comment.objects.get(id=parent_id)
+        Comment.objects.create(body=body, user=request.user, article=article, parent=parent)
 
     return render(request, "blog_app/post-details.html", {"article": article})
 
