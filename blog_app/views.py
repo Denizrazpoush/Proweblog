@@ -35,5 +35,15 @@ def category_detail(request, pk):
     return render(request, "blog_app/blog.html", {"articles": articles})
 
 
+def search(request):
+
+    q = request.GET.get("q")
+    articles = Article.article_manager.filter(title__icontains=q)
+    page_number = request.GET.get('page')
+    paginator = Paginator(articles, 2)
+    objects_list = paginator.get_page(page_number)
+    return render(request, "blog_app/blog.html", {"articles": objects_list})
+
+
 
 
