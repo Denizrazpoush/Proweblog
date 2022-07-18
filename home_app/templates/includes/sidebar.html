@@ -6,7 +6,7 @@
                   <div class="sidebar-item search">
                     <form id="search_form" name="gs" method="GET" action="{% url "blog_app:search" %}">
 
-                      <input type="text" name="q" class="searchText" placeholder="type to search..." autocomplete="on">
+                      <input type="text" name="q" class="searchText" placeholder={% if request.GET.q %} {{ request.GET.q }} {% else %}"type for search" {% endif %}>
                     </form>
                   </div>
                 </div>
