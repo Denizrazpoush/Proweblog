@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Article, Category, Comment
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from .forms import Contactus
 
 
 # Create your views here.
@@ -43,6 +44,20 @@ def search(request):
     paginator = Paginator(articles, 2)
     objects_list = paginator.get_page(page_number)
     return render(request, "blog_app/blog.html", {"articles": objects_list})
+
+
+def contact(request):
+
+    if request.method == "POST":
+        form = Contactus(request.POST)
+        return redirect("home_app:home")
+
+    else:
+        form = Contactus()
+
+    return render(request, "blog_app/contact.html", {"form": form})
+
+
 
 
 

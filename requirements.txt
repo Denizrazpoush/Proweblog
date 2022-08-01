@@ -1,0 +1,8 @@
+asgiref==3.5.2
+backports.zoneinfo==0.2.1
+Django==4.0.4
+django-cleanup==6.0.0
+django-render-partial==0.4
+django-social-share==2.2.1
+Pillow==9.1.1
+sqlparse==0.4.2

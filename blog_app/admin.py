@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Article, Category, Comment
+from .forms import Contactus
 
 # Register your models here.
 
