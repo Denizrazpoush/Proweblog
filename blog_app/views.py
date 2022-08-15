@@ -49,8 +49,12 @@ def search(request):
 def contact(request):
 
     if request.method == "POST":
-        form = Contactus(request.POST)
-        return redirect("home_app:home")
+        form = Contactus(data=request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+            return redirect("home_app:home")
+        else:
+            form = Contactus(data=request.POST)
 
     else:
         form = Contactus()
