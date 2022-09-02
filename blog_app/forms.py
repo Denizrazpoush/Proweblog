@@ -1,13 +1,21 @@
 from django import forms
 from django.core.exceptions import ValidationError
+from blog_app.models import Message
 
+
+class MessageForm(forms.ModelForm):
+    class Meta:
+        model = Message
+        fields = '__all__'
 
 class Contactus(forms.Form):
+   BIRTH_YEAR_CHOOSE = ['1999','1997','1993']
+
 
    text = forms.CharField(max_length=20, label='',
                     widget=forms.TextInput(attrs={'placeholder': 'your text'}))
    name = forms.CharField(max_length=20, label='', widget=forms.TextInput(attrs={'placeholder': 'type your name'}))
-
+   birth_year = forms.DateField(widget = forms.SelectDateWidget(years=BIRTH_YEAR_CHOOSE))
 
    def clean(self):
 
@@ -22,6 +30,9 @@ class Contactus(forms.Form):
         if 'mother' or 'MOTHER' in name:
             raise ValidationError("you had mother in you name", code='213')
         return name
+
+
+
 
 
 

@@ -66,6 +66,16 @@ class Comment (models.Model):
         return self.body[:50]
 
 
+class Message(models.Model):
+    title = models.CharField(max_length=50)
+    text = models.TextField(max_length=200)
+    email = models.EmailField()
+
+    def __str__(self):
+        return self.title
+
+
+
 
 
 
